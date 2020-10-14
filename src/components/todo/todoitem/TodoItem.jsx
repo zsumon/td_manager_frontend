@@ -13,14 +13,16 @@ const TodoItem = ({item, onTodoEdit, onTodoDelete}) => {
             <span>{item.title}</span>}</label>
         </div>
       </div>
+
       <div className="d-flex justify-content-end">
-        <i className="fas fa-edit mr-2"/>
+        <i className="fas fa-edit mr-2" style={{color: "green"}}/>
         <i
           onClick={() => onTodoEdit(item, {...item, isPublic: !item.isPublic})}
-          className={"mr-2 text-primary " + (item.isPublic ? "fas fa-eye" : "fas fa-eye-slash")} style={{color:""}}/>
+          className={"mr-2 text-primary " + (item.isPublic ? "fas fa-eye" : "fas fa-eye-slash")} style={{color: ""}}/>
 
         <i onClick={() => onTodoDelete(item)} className="fas fa-trash text-danger" style={{color: ""}}/>
       </div>
+
     </div>
   </div>
 }
