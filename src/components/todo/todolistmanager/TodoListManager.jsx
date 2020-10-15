@@ -95,7 +95,8 @@ const TodoListManager = () => {
         </div>
 
         <div className="col-md-5">
-          <div className="border rounded mb-2 p-2 d-flex justify-content-between align-items-center" style={{backgroundColor:"#9ab3f5",color:"honeydew"}}>
+          <div className="border rounded mb-2 p-2 d-flex justify-content-between align-items-center"
+               style={{backgroundColor: "#9ab3f5", color: "honeydew"}}>
             <span className={"mr-2"}>Public list</span>
             <i onClick={() => {
               setLoadingPublicTodos(true);
@@ -105,9 +106,10 @@ const TodoListManager = () => {
           <div className="card">
             <div className="card-body">
               {publicTodos.map((it, idx) => (<div className="mb-2" key={idx}>
-                <div className="d-flex justify-content-between align-items-center pt-1 pb-1" style={{borderLeft: "5px solid #7579e7",backgroundColor:"#D6E3F3"}}>
+                <div className="d-flex justify-content-between align-items-center pt-1 pb-1"
+                     style={{borderLeft: "5px solid #7579e7", backgroundColor: "#D6E3F3"}}>
                   <p className={"ml-2 mb-0"}>{it.title} <sub>by {it.todoUser.userName}</sub></p>
-                  <p className={"mb-0 mr-2"}>{new Date(it.createdAt).toLocaleDateString()}</p>
+                  <p className="mb-0 mr-2 " style={{fontSize: "75%"}}>{new Date(it.createdAt).toLocaleDateString()}</p>
                 </div>
               </div>))}
             </div>

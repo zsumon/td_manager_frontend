@@ -7,10 +7,11 @@ const Login = ({onLoginSuccess}) => {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [jwt, setJwt] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = async () => {
+    setLoading(true);
     try {
-      console.log(userName, password);
       const res = await login({userName, password});
       console.log(res.data);
       if (res.data.jwt) {
@@ -20,6 +21,8 @@ const Login = ({onLoginSuccess}) => {
       }
     } catch (e) {
       console.log(e);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -45,7 +48,15 @@ const Login = ({onLoginSuccess}) => {
           <input onChange={(e) => setPassword(e.target.value)} type="password" className="form-control"
                  placeholder="Password"/>
         </div>
-        <button style={{width: "100%"}} onClick={handleLogin} className="btn btn-primary">Login</button>
+        <button style={{width: "100%"}}
+                onClick={handleLogin}
+                className="btn btn-primary d-flex align-items-center justify-content-center"
+                type="button"
+                disabled={loading}>
+          {loading && <> <span className="spinner-border mr-2 spinner-border-sm"/>Logging in...</>}
+          {!loading && "Login"}
+        </button>
+
       </div>
     </div>
   </div>
