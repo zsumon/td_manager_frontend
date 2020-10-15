@@ -14,19 +14,11 @@ export async function login(credential) {
 }
 
 export async function getCurrentUserTodos() {
-  return axios.get(BASE_URL + "/todos", {
-    headers: {
-      "Authorization": "Bearer " + localStorage.jwt,
-    }
-  });
+  return get(BASE_URL + "/todos");
 }
 
 export async function addTodo(todoItem) {
-  return axios.post(BASE_URL + "/todos", todoItem, {
-    headers: {
-      "Authorization": "Bearer " + localStorage.jwt,
-    }
-  });
+  return post(BASE_URL + "/todos", todoItem);
 }
 
 export async function updateTodoItem(todoItem) {
@@ -46,7 +38,7 @@ export function getPublicTodos() {
 }
 
 export function loadProfileByUserName(userName) {
-  return get(BASE_URL + "/user?user_name=");
+  return get(BASE_URL + "/user?user_name=" + userName);
 }
 
 export function loadCurrentUserProfile() {

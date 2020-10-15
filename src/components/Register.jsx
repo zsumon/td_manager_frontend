@@ -6,6 +6,7 @@ const Register = () => {
   const [fullName, setFullName] = useState('');
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleRegistration = async () => {
     let err = false;
@@ -22,14 +23,14 @@ const Register = () => {
       alert("Please fill up the form correctly");
       return;
     }
-
+    setLoading(true);
     try {
       const res = await register({userName, fullName, password});
       console.log(res.data);
-      if (typeof res.data !== "object") {
-      }
     } catch (e) {
       console.log(e);
+    } finally {
+      setTimeout(() => setLoading(false), 500);
     }
   }
 
@@ -64,7 +65,14 @@ const Register = () => {
                  placeholder="Password"/>
         </div>
 
-        <button style={{width: "100%"}} onClick={handleRegistration} className="btn btn-success">Register</button>
+        <button style={{width: "100%"}}
+                onClick={handleRegistration}
+                className="btn btn-primary d-flex align-items-center justify-content-center"
+                type="button"
+                disabled={loading}>
+          {loading && <> <span className="spinner-border mr-2 spinner-border-sm"/>Registering...</>}
+          {!loading && "Register"}
+        </button>
 
       </div>
     </div>
