@@ -79,7 +79,7 @@ const TodoListManager = () => {
                 await updateTodoItem(editedTodo);
                 const currentTodos = (await getCurrentUserTodos()).data;
                 setTodos(currentTodos);
-                if (prevTodo.isPublic !== editedTodo.isPublic) {
+                if (prevTodo.isPublic !== editedTodo.isPublic || editedTodo.isPublic) {
                   setLoadingPublicTodos(true);
                   const publicTodos = (await getPublicTodos()).data;
                   setPublicTodos(publicTodos);
@@ -87,7 +87,7 @@ const TodoListManager = () => {
               } catch (err) {
                 console.log(err);
               } finally {
-                if (prevTodo.isPublic !== editedTodo.isPublic)
+                if (prevTodo.isPublic !== editedTodo.isPublic || editedTodo.isPublic)
                   setTimeout(() => setLoadingPublicTodos(false), 500);
               }
             }}

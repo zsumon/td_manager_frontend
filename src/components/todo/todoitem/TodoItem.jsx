@@ -1,7 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from "./TodoItem.module.css";
+import Editor from "./Editor";
 
 const TodoItem = ({item, onTodoEdit, onTodoDelete}) => {
+
+  const [editing, setEditing] = useState(false);
 
   return <div className="list-group-item">
     <div className="d-flex align-items-baseline justify-content-between ">
@@ -15,7 +18,9 @@ const TodoItem = ({item, onTodoEdit, onTodoDelete}) => {
       </div>
 
       <div className="d-flex justify-content-end">
-        <i className="fas fa-edit mr-2" style={{color: "green"}}/>
+        <i onClick={() => {
+          setEditing(true);
+        }} className="fas fa-edit mr-2" style={{color: "green"}}/>
         <i
           onClick={() => onTodoEdit(item, {...item, isPublic: !item.isPublic})}
           className={"mr-2 text-primary " + (item.isPublic ? "fas fa-eye" : "fas fa-eye-slash")} style={{color: ""}}/>
@@ -24,6 +29,13 @@ const TodoItem = ({item, onTodoEdit, onTodoDelete}) => {
       </div>
 
     </div>
+    <Editor text={item.title}
+            visible={editing}
+            close={() => setEditing(false)}
+            onEdit={(editedText) => {
+              onTodoEdit(item, {...item, title: editedText});
+              setEditing(false);
+            }}/>
   </div>
 }
 
