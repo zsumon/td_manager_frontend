@@ -6,7 +6,7 @@ const Login = ({onLoginSuccess}) => {
 
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
-  const [jwt, setJwt] = useState('');
+  const [jwt, setJwt] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const handleLogin = async () => {
@@ -16,8 +16,11 @@ const Login = ({onLoginSuccess}) => {
       console.log(res.data);
       if (res.data.jwt) {
         localStorage.jwt = res.data.jwt;
-        setJwt(res.data);
         onLoginSuccess(localStorage.jwt);
+        setLoading(false);
+        // we have to call setLoading(false) first before setJwt(...) call, to prevent redirection before the loading flag update,
+        // else we'll be setting state variable while Login component is already unmounted, thus giving us an error likely can't perform state update in unmounted component
+        setJwt(res.data);
       }
     } catch (e) {
       console.log(e);
@@ -28,7 +31,7 @@ const Login = ({onLoginSuccess}) => {
 
   if (jwt) return <Redirect to={"/"}/>
 
-  return <div className="mt-4">
+  return <div className="container mt-4">
     <div className="card" style={{maxWidth: "25rem", margin: "0 auto"}}>
       <div className="card-header">Login</div>
       <div className="card-body">

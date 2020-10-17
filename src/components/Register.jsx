@@ -30,13 +30,13 @@ const Register = () => {
     } catch (e) {
       console.log(e);
     } finally {
-      setTimeout(() => setLoading(false), 500);
+      setLoading(false);
     }
   }
 
   if (isLoggedIn()) return <Redirect to={"/"}/>
 
-  return <div className="mt-4">
+  return <div className="container mt-4">
     <div className="card" style={{maxWidth: "25rem", margin: "0 auto"}}>
       <div className="card-header text-center">Register</div>
       <div className="card-body">
