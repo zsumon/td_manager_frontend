@@ -105,6 +105,7 @@ const TodoListManager = () => {
           </div>
           <div className="card">
             <div className="card-body">
+              {!publicTodos.length && "Public list is empty"}
               {publicTodos.map((it, idx) => (<div className="mb-2" key={idx}>
                 <div className="d-flex justify-content-between align-items-center pt-1 pb-1"
                      style={{borderLeft: "5px solid #7579e7", backgroundColor: "#D6E3F3"}}>

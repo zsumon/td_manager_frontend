@@ -7,8 +7,10 @@ const Editor = ({text, visible, onEdit, close}) => {
 
   return <div className={styles.modal + " " + (visible ? "d-block" : "d-none")}>
     <div className={styles.modalContent + " text-center"}>
+      <h5 className="pb-2 border-bottom">Edit todo</h5>
+      <span onClick={() => close()} className={"close"} style={{cursor: "pointer"}}>&times;</span>
       <input
-        className=""
+        className="mr-2 form-control-sm mt-3"
         type="text"
         style={{maxWidth: "12rem"}}
         value={editedText}
@@ -21,7 +23,6 @@ const Editor = ({text, visible, onEdit, close}) => {
           setSaving(false);
         }}>Save
       </button>
-      <span onClick={() => close()} className={"close"} style={{cursor: "pointer"}}>&times;</span>
     </div>
   </div>
 }
