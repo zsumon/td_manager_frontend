@@ -9,6 +9,14 @@ const AddTodo = ({onTodoAdd}) => {
         onChange={(e) => setTitle(e.target.value)}
         value={title}
         type="text"
+        onKeyUp={(event) => {
+          if (event.keyCode === 13) {
+            if (title !== "") {
+              onTodoAdd(title);
+              setTitle('');
+            }
+          }
+        }}
         className="form-control"
         placeholder="Something to do..."/>
       <div style={{cursor: "pointer"}} className="input-group-append">
@@ -21,7 +29,7 @@ const AddTodo = ({onTodoAdd}) => {
               setTitle('');
             }
           }}>
-          <i className="fas fa-plus" style={{color:"white"}}/>
+          <i className="fas fa-plus" style={{color: "white"}}/>
         </span>
       </div>
     </div>

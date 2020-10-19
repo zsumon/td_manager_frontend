@@ -46,7 +46,7 @@ const TodoListManager = () => {
       <div className="row">
         <div className="col-md-7">
 
-          <AddTodo onTodoAdd={async (title) => {
+          <AddTodo onTodoAdd={async title => {
             await addTodo({
               title,
               isPublic: false,
@@ -57,7 +57,7 @@ const TodoListManager = () => {
 
           <TodoList
             todos={todos}
-            onTodoDelete={async (item) => {
+            onTodoDelete={async item => {
               try {
                 await deleteTodoItem(item.id)
                 const currentTodos = (await getCurrentUserTodos()).data;
