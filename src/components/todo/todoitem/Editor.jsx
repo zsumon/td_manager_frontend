@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import styles from './Editor.module.css';
 
 const Editor = ({text, visible, onEdit, close}) => {

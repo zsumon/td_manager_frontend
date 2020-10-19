@@ -29,13 +29,14 @@ const TodoItem = ({item, onTodoEdit, onTodoDelete}) => {
       </div>
 
     </div>
+    {editing &&
     <Editor text={item.title}
             visible={editing}
             close={() => setEditing(false)}
             onEdit={(editedText) => {
               onTodoEdit(item, {...item, title: editedText});
               setEditing(false);
-            }}/>
+            }}/>}
   </div>
 }
 
