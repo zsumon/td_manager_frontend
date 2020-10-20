@@ -22,10 +22,10 @@ const Login = ({onLoginSuccess}) => {
         // else we'll be setting state variable while Login component is already unmounted, thus giving us an error likely can't perform state update in unmounted component
         setJwt(res.data);
       }
-    } catch (e) {
-      console.log(e);
-    } finally {
       setLoading(false);
+    } catch (e) {
+      setLoading(false);
+      console.log(e);
     }
   };
 
